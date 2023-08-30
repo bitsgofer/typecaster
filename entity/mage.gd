@@ -45,14 +45,12 @@ func _input(event):
 func execute_incantation(incantation:String):
 	# Version 1: Incantation == [Target name]
 
-	print_debug("execute incantation: " + incantation)
 	var potential_targets = get_node("/root/node").get_children()
 	for target in potential_targets:
 		if !property_exist(target, "TargetLabel"):
 			continue
 
 		if target.TargetLabel == incantation:
-			print_debug("matched: " + incantation)
 			cast_spell(target)
 		pass
 	pass
@@ -67,8 +65,6 @@ func property_exist(node:Node, property:String) -> bool:
 const SpellScene = preload("res://entity/spell.tscn")
 
 func cast_spell(target:Node):
-	print_debug("cast spell= " + target.name)
 	var spell = SpellScene.instantiate()
-	spell.position = self.position
-	spell.Target = target
+	spell.init(self.position, 100, target)
 	get_node("/root/node").add_child(spell)

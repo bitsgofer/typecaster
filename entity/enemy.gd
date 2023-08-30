@@ -3,27 +3,33 @@ extends Node2D
 @export var Speed:int = 10
 @export var TargetLabel:String = "CHANGE_ME"
 
-var target:Node
+var target_ref
 
 func _ready():
-	pass
+	$EnemyArea.area_entered.connect(Callable(self, "_on_spell_hit"))
 
 func _process(delta):
 	move_towards_target(self.Speed * delta)
 
 func move_towards_target(distance:float):
-	var direction = self.target.position - self.position
+	var target = self.target_ref.get_ref()
+	if target == null:
+		return
 
+	var direction = target.position - self.position
 	direction = direction.normalized()
 	position += direction * distance
-
-func set_target(target):
-	self.target = target.position
 
 func init(name:String, target:Node, position:Vector2i):
 	self.TargetLabel = name
 	$TargetLabel.text = name
 
-	self.target = target
+	self.target_ref = weakref(target)
 
 	self.position = position
+
+func _on_spell_hit(area:Area2D):
+	if area.name != "SpellArea":
+		return
+
+	self.queue_free()

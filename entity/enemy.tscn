@@ -12,9 +12,9 @@ script = ExtResource("1_mo3tu")
 [node name="Sprite" type="Sprite2D" parent="."]
 texture = ExtResource("1_g65va")
 
-[node name="Area" type="Area2D" parent="."]
+[node name="EnemyArea" type="Area2D" parent="."]
 
-[node name="CollisionShape" type="CollisionShape2D" parent="Area"]
+[node name="CollisionShape" type="CollisionShape2D" parent="EnemyArea"]
 shape = SubResource("CircleShape2D_vmp4j")
 
 [node name="TargetLabel" type="Label" parent="."]
