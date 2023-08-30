@@ -28,7 +28,6 @@ const enemyScene:PackedScene = preload("res://entity/enemy.tscn")
 func _on_spawn_timer_tick():
 	var name = get_random_name()
 	if enemies.has(name):
-		print_debug("already have Enemy(%s) => no spawn" % name)
 		return
 
 	var position_x = randi() % (get_viewport().size.x - 64) + 32
