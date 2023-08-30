@@ -18,10 +18,11 @@ func move_towards_target(distance:float):
 	direction = direction.normalized()
 	position += direction * distance
 
-func init(position:Vector2, speed:int, target:Node):
+func init(position:Vector2, speed:int, target:Node, group_key:String):
 	self.position = position
 	self.speed = speed
 	self.target_ref = weakref(target)
+	self.add_to_group("spell/%s" % group_key)
 
 func _on_spell_hit(area:Area2D):
 	if area.name != "EnemyArea":

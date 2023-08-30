@@ -32,4 +32,5 @@ func _on_spell_hit(area:Area2D):
 	if area.name != "SpellArea":
 		return
 
+	get_tree().call_group("spell/%s" % self.TargetLabel, "queue_free")
 	self.queue_free()

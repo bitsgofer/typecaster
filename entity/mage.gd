@@ -66,5 +66,5 @@ const SpellScene = preload("res://entity/spell.tscn")
 
 func cast_spell(target:Node):
 	var spell = SpellScene.instantiate()
-	spell.init(self.position, 100, target)
+	spell.init(self.position, 100, target, target.TargetLabel)
 	get_node("/root/node").add_child(spell)
