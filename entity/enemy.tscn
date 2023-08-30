@@ -17,7 +17,7 @@ texture = ExtResource("1_g65va")
 [node name="CollisionShape" type="CollisionShape2D" parent="Area"]
 shape = SubResource("CircleShape2D_vmp4j")
 
-[node name="Label" type="Label" parent="."]
+[node name="TargetLabel" type="Label" parent="."]
 offset_left = -100.0
 offset_top = 20.0
 offset_right = 100.0
