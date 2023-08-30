@@ -3,28 +3,16 @@ extends Node2D
 @export var Speed:int = 10
 @export var TargetLabel:String = "CHANGE_ME"
 
-var target:Vector2 = self.position
-
-var name_list = [
-	"A",
-	"B",
-	"C",
-	"D",
-	"E",
-	"F",
-]
+var target:Node
 
 func _ready():
-	var mage = get_node("/root/root/Mage")
-
-	set_random_target_label()
-	set_target(mage)
+	pass
 
 func _process(delta):
-	move_towards(self.target, self.Speed * delta)
+	move_towards_target(self.Speed * delta)
 
-func move_towards(target:Vector2, distance:float):
-	var direction = target - position
+func move_towards_target(distance:float):
+	var direction = self.target.position - self.position
 
 	direction = direction.normalized()
 	position += direction * distance
@@ -32,7 +20,10 @@ func move_towards(target:Vector2, distance:float):
 func set_target(target):
 	self.target = target.position
 
-func set_random_target_label():
-	var name = name_list[randi() % name_list.size()]
+func init(name:String, target:Node, position:Vector2i):
 	self.TargetLabel = name
 	$TargetLabel.text = name
+
+	self.target = target
+
+	self.position = position
