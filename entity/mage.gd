@@ -6,7 +6,7 @@ extends Node2D
 var incantation = "" # Current incantation
 
 func _ready():
-	pass # Replace with function body.
+	pass
 
 func _process(delta):
 	pass
@@ -46,7 +46,7 @@ func execute_incantation(incantation:String):
 	# Version 1: Incantation == [Target name]
 
 	print_debug("execute incantation: " + incantation)
-	var potential_targets = get_node("/root/root").get_children()
+	var potential_targets = get_node("/root/node").get_children()
 	for target in potential_targets:
 		if !property_exist(target, "TargetLabel"):
 			continue
@@ -71,4 +71,4 @@ func cast_spell(target:Node):
 	var spell = SpellScene.instantiate()
 	spell.position = self.position
 	spell.Target = target
-	get_node("/root/root").add_child(spell)
+	get_node("/root/node").add_child(spell)
