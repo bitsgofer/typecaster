@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://eea6cl2rtqqw"]
+
+[ext_resource type="Texture2D" uid="uid://20buy1d205fu" path="res://assets/enemy.png" id="1_g65va"]
+[ext_resource type="Script" path="res://entity/enemy.gd" id="1_mo3tu"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vmp4j"]
+radius = 16.0
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_mo3tu")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_g65va")
+
+[node name="Area" type="Area2D" parent="."]
+
+[node name="CollisionShape" type="CollisionShape2D" parent="Area"]
+shape = SubResource("CircleShape2D_vmp4j")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -100.0
+offset_top = 20.0
+offset_right = 100.0
+offset_bottom = 50.0
+text = "TARGET NAME"
+horizontal_alignment = 1
+vertical_alignment = 1
