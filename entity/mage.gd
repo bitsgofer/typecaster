@@ -70,5 +70,5 @@ func cast_spell(target:Node):
 	print_debug("cast spell= " + target.name)
 	var spell = SpellScene.instantiate()
 	spell.position = self.position
-	spell.set_direction(target)
+	spell.Target = target
 	get_node("/root/root").add_child(spell)
