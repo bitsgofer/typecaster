@@ -1,17 +1,17 @@
 extends Node2D
 
-@export var Speed:int = 100
+@export var Speed:int = 10
 @export var TargetLabel:String = "CHANGE_ME"
 
 var target:Vector2 = self.position
 
 var name_list = [
-	"chicken",
-	"egg",
-	"foo",
-	"bar",
-	"hello world",
-	"random",
+	"A",
+	"B",
+	"C",
+	"D",
+	"E",
+	"F",
 ]
 
 func _ready():
