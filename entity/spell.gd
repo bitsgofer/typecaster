@@ -7,7 +7,7 @@ func _ready():
 	$SpellArea.area_entered.connect(Callable(self, "_on_spell_hit"))
 
 func _process(delta):
-	move_towards_target(self.Speed * delta)
+	move_towards_target(self.speed * delta)
 
 func move_towards_target(distance:float):
 	var target = self.target_ref.get_ref()
