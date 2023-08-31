@@ -20,7 +20,7 @@ func move_towards_target(distance:float):
 	direction = direction.normalized()
 	position += direction * distance
 
-func init(name:String, target:Node, position:Vector2i):
+func init(name:String, target:Node, position:Vector2):
 	self.TargetLabel = name
 	$TargetLabel.text = name
 
