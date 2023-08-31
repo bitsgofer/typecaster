@@ -6,7 +6,7 @@ extends Node2D
 var incantation = "" # Current incantation
 
 func _ready():
-	pass
+	$MageArea.area_entered.connect(Callable(self, "_on_spell_hit"))
 
 func _process(delta):
 	pass
@@ -68,3 +68,14 @@ func cast_spell(target:Node):
 	var spell = SpellScene.instantiate()
 	spell.init(self.position, 100, target, target.TargetLabel)
 	get_node("/root/node").add_child(spell)
+
+const game_over_scene:PackedScene = preload("res://scene/game_over.tscn")
+
+func _on_spell_hit(area:Area2D):
+	if area.name != "EnemyArea":
+		return
+
+	var scene = game_over_scene.instantiate()
+	get_tree().root.add_child(scene)
+	get_tree().current_scene.queue_free()
+	get_tree().current_scene = scene
