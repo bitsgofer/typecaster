@@ -45,12 +45,12 @@ func _input(event):
 func execute_incantation(incantation:String):
 	# Version 1: Incantation == [Target name]
 
-	var potential_targets = get_node("/root/node").get_children()
+	var potential_targets = get_tree().root.get_node("node").get_children()
 	for target in potential_targets:
 		if !property_exist(target, "TargetLabel"):
 			continue
 
-		if target.TargetLabel == incantation:
+		if target.TargetLabel.to_upper() == incantation.to_upper():
 			cast_spell(target)
 		pass
 	pass
@@ -67,7 +67,7 @@ const SpellScene = preload("res://entity/spell.tscn")
 func cast_spell(target:Node):
 	var spell = SpellScene.instantiate()
 	spell.init(self.position, 100, target, target.TargetLabel)
-	get_node("/root/node").add_child(spell)
+	get_tree().root.get_node("node").add_child(spell)
 
 const game_over_scene:PackedScene = preload("res://scene/game_over.tscn")
 
