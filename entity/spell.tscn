@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://cthwdy8k3w5je"]
+
+[ext_resource type="Texture2D" uid="uid://gffrouvebj5a" path="res://assets/spell.png" id="1_whcpp"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5p2fh"]
+radius = 4.0
+
+[node name="Node" type="Node2D"]
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_whcpp")
+
+[node name="Area" type="Area2D" parent="."]
+
+[node name="CollisionShape" type="CollisionShape2D" parent="Area"]
+shape = SubResource("CircleShape2D_5p2fh")

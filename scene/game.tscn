@@ -1,14 +1,18 @@
-[gd_scene load_steps=2 format=3 uid="uid://cnpkoad5pgmn7"]
+[gd_scene load_steps=3 format=3 uid="uid://cnpkoad5pgmn7"]
 
 [ext_resource type="Script" path="res://scene/game.gd" id="1_2ntt1"]
+[ext_resource type="PackedScene" uid="uid://bur7mhsgfrq3d" path="res://entity/mage.tscn" id="2_822a3"]
 
 [node name="Node" type="Node2D"]
 script = ExtResource("1_2ntt1")
 
 [node name="EndGame" type="Button" parent="."]
 unique_name_in_owner = true
-offset_left = 303.0
-offset_top = 167.0
-offset_right = 345.0
-offset_bottom = 198.0
+offset_left = 308.0
+offset_top = 308.0
+offset_right = 350.0
+offset_bottom = 339.0
 text = "END"
+
+[node name="Mage" parent="." instance=ExtResource("2_822a3")]
+position = Vector2(324, 213)

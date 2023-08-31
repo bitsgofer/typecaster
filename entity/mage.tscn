@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://bur7mhsgfrq3d"]
+
+[ext_resource type="Texture2D" uid="uid://ifwkuun8gomo" path="res://assets/mage.png" id="1_hlg0e"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ng6su"]
+radius = 16.0
+
+[node name="Node" type="Node2D"]
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_hlg0e")
+
+[node name="MageArea" type="Area2D" parent="."]
+
+[node name="CollisionShape" type="CollisionShape2D" parent="MageArea"]
+shape = SubResource("CircleShape2D_ng6su")
