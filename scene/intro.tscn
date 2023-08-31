@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=3 uid="uid://vw1gw8jb5fd3"]
+
+[ext_resource type="Script" path="res://scene/intro.gd" id="1_24vno"]
+
+[node name="Node" type="Node2D"]
+script = ExtResource("1_24vno")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 275.0
+offset_top = 106.0
+offset_right = 371.0
+offset_bottom = 132.0
+text = "TYPECASTER"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Play" type="Button" parent="."]
+unique_name_in_owner = true
+offset_left = 300.0
+offset_top = 155.0
+offset_right = 347.0
+offset_bottom = 186.0
+text = "PLAY"
