@@ -1,3 +1,15 @@
-[gd_scene format=3 uid="uid://8fkfn6f4rps"]
+[gd_scene load_steps=4 format=3 uid="uid://8fkfn6f4rps"]
+
+[ext_resource type="PackedScene" uid="uid://cwvklrmjgtk7e" path="res://entity/mage.tscn" id="1_5f7a1"]
+[ext_resource type="Script" path="res://scene/root.gd" id="1_wsrc1"]
+[ext_resource type="PackedScene" uid="uid://dvw4jbdanp7om" path="res://entity/enemySpawner.tscn" id="4_jlbom"]
 
 [node name="node" type="Node2D"]
+script = ExtResource("1_wsrc1")
+
+[node name="Mage" parent="." instance=ExtResource("1_5f7a1")]
+unique_name_in_owner = true
+position = Vector2(320, 180)
+
+[node name="EnemySpawner" parent="." instance=ExtResource("4_jlbom")]
+position = Vector2(320, 180)
