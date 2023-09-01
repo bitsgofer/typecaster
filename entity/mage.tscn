@@ -1,0 +1,64 @@
+[gd_scene load_steps=5 format=3 uid="uid://lo157ndfrqpx"]
+
+[ext_resource type="Script" path="res://entity/mage.gd" id="1_1nx04"]
+[ext_resource type="Texture2D" uid="uid://cbwuir4nrj0nb" path="res://assets/mage.png" id="1_grlc2"]
+[ext_resource type="Texture2D" uid="uid://dkhu05d7uu6gc" path="res://assets/heart.png" id="2_g3n20"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qo61v"]
+radius = 16.0
+
+[node name="Mage" type="Node2D"]
+script = ExtResource("1_1nx04")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_grlc2")
+
+[node name="Mage" type="Area2D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Mage"]
+shape = SubResource("CircleShape2D_qo61v")
+
+[node name="SpellSpawnPoint" type="Node2D" parent="Mage"]
+position = Vector2(-16, 0)
+
+[node name="IncantationUI" type="CenterContainer" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -128.0
+offset_top = 16.0
+offset_right = 128.0
+offset_bottom = 48.0
+grow_horizontal = 2
+
+[node name="Incantation" type="Label" parent="IncantationUI"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "YOUR INCANTATION"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HealthUI" type="CenterContainer" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -32.0
+offset_top = -48.0
+offset_right = 32.0
+offset_bottom = -16.0
+grow_horizontal = 2
+
+[node name="HSplitContainer" type="HSplitContainer" parent="HealthUI"]
+layout_mode = 2
+
+[node name="Heart" type="TextureRect" parent="HealthUI/HSplitContainer"]
+layout_mode = 2
+texture = ExtResource("2_g3n20")
+stretch_mode = 5
+
+[node name="Health" type="Label" parent="HealthUI/HSplitContainer"]
+layout_mode = 2
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
