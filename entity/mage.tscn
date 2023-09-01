@@ -1,16 +1,59 @@
-[gd_scene load_steps=3 format=3 uid="uid://bur7mhsgfrq3d"]
+[gd_scene load_steps=4 format=3 uid="uid://bur7mhsgfrq3d"]
 
 [ext_resource type="Texture2D" uid="uid://ifwkuun8gomo" path="res://assets/mage.png" id="1_hlg0e"]
+[ext_resource type="Texture2D" uid="uid://cif7fonweihy" path="res://assets/heart.png" id="2_53h88"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ng6su"]
 radius = 16.0
 
-[node name="Node" type="Node2D"]
+[node name="Mage" type="Node2D"]
 
 [node name="Sprite" type="Sprite2D" parent="."]
 texture = ExtResource("1_hlg0e")
 
-[node name="MageArea" type="Area2D" parent="."]
+[node name="Area" type="Area2D" parent="."]
+collision_mask = 2
 
-[node name="CollisionShape" type="CollisionShape2D" parent="MageArea"]
+[node name="CollisionShape" type="CollisionShape2D" parent="Area"]
 shape = SubResource("CircleShape2D_ng6su")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -90.0
+offset_top = 15.0
+offset_right = 90.0
+offset_bottom = 45.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(90, 15)
+
+[node name="Incantation" type="Label" parent="CenterContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "INCANTATION"
+
+[node name="HealthBar" type="HSplitContainer" parent="."]
+offset_left = -13.0
+offset_top = -44.0
+offset_right = 13.0
+offset_bottom = -18.0
+theme_override_constants/separation = 0
+theme_override_constants/minimum_grab_thickness = 0
+theme_override_constants/autohide = 0
+dragger_visibility = 1
+
+[node name="Icon" type="TextureRect" parent="HealthBar"]
+layout_mode = 2
+texture = ExtResource("2_53h88")
+stretch_mode = 3
+
+[node name="Health" type="Label" parent="HealthBar"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
