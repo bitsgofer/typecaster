@@ -1,0 +1,36 @@
+[gd_scene load_steps=2 format=3 uid="uid://blgplyvbaac35"]
+
+[ext_resource type="Script" path="res://scene/intro.gd" id="1_vyurm"]
+
+[node name="Node" type="Node2D"]
+script = ExtResource("1_vyurm")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+offset_right = 640.0
+offset_bottom = 360.0
+
+[node name="VSplitContainer" type="VSplitContainer" parent="CenterContainer"]
+layout_mode = 2
+dragger_visibility = 2
+
+[node name="GridContainer" type="GridContainer" parent="CenterContainer/VSplitContainer"]
+layout_mode = 2
+
+[node name="HowToPlay" type="Label" parent="CenterContainer/VSplitContainer/GridContainer"]
+layout_mode = 2
+text = "Type enemy's name to cast a spell towards them."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="WhenToWin" type="Label" parent="CenterContainer/VSplitContainer/GridContainer"]
+layout_mode = 2
+text = "Survive the waves."
+
+[node name="WhenToLose" type="Label" parent="CenterContainer/VSplitContainer/GridContainer"]
+layout_mode = 2
+text = "If enemy hit you, you die!"
+
+[node name="Play" type="Button" parent="CenterContainer/VSplitContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "PLAY"

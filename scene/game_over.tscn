@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=3 uid="uid://bxfyvd3g05pd"]
+
+[ext_resource type="Script" path="res://scene/game_over.gd" id="1_ef36l"]
+
+[node name="Node" type="Node2D"]
+script = ExtResource("1_ef36l")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+offset_right = 640.0
+offset_bottom = 360.0
+
+[node name="VSplitContainer" type="VSplitContainer" parent="CenterContainer"]
+layout_mode = 2
+dragger_visibility = 2
+
+[node name="GameOver" type="Label" parent="CenterContainer/VSplitContainer"]
+layout_mode = 2
+text = "GAME OVER
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PlayAgain" type="Button" parent="CenterContainer/VSplitContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "PLAY AGAIN?"
