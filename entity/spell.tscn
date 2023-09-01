@@ -1,11 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://cthwdy8k3w5je"]
+[gd_scene load_steps=4 format=3 uid="uid://cthwdy8k3w5je"]
 
+[ext_resource type="Script" path="res://entity/spell.gd" id="1_48ksv"]
 [ext_resource type="Texture2D" uid="uid://gffrouvebj5a" path="res://assets/spell.png" id="1_whcpp"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5p2fh"]
 radius = 4.0
 
 [node name="Spell" type="Node2D"]
+script = ExtResource("1_48ksv")
 
 [node name="Sprite" type="Sprite2D" parent="."]
 texture = ExtResource("1_whcpp")
