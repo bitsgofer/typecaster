@@ -5,12 +5,13 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_5p2fh"]
 radius = 4.0
 
-[node name="Node" type="Node2D"]
+[node name="Spell" type="Node2D"]
 
 [node name="Sprite" type="Sprite2D" parent="."]
 texture = ExtResource("1_whcpp")
 
 [node name="Area" type="Area2D" parent="."]
+collision_mask = 2
 
 [node name="CollisionShape" type="CollisionShape2D" parent="Area"]
 shape = SubResource("CircleShape2D_5p2fh")
