@@ -30,6 +30,7 @@ offset_bottom = 48.0
 grow_horizontal = 2
 
 [node name="EnemyLabel" type="Label" parent="EnemyLabelUI"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "ENEMY LABEL"
 horizontal_alignment = 1

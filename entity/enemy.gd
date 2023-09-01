@@ -10,6 +10,7 @@ extends Node2D
 @export var speed:int = 50
 @export var target:Node = null
 var target_ref:WeakRef = null
+@export var target_name:String = "CHANGE_ME"
 
 # only update the internal target_ref. position and speed is taken from editor
 func _enter_tree():
@@ -18,11 +19,15 @@ func _enter_tree():
 	self.join_group()
 
 # configure all aspects of the enemy
-func configure(p_global_position:Vector2, p_target:Node, p_speed:int):
+func configure(p_global_position:Vector2, p_target:Node, p_speed:int, p_target_name:String):
 	self.position = p_global_position
 	self.speed = p_speed
 	self.target_ref = weakref(p_target)
+	self.target_name = p_target_name
 	self.join_group()
+
+func update_ui():
+	$EnemyLabelUI/EnemyLabel.text = self.target_name
 
 func join_group():
 	if self.target_ref == null:
@@ -38,6 +43,7 @@ func join_group():
 
 func _ready():
 	print_debug("ENEMY: spawned @ (%d, %d)" % [self.position.x, self.position.y])
+	self.update_ui()
 
 func _process(delta):
 	move_towards_top_level_target(delta)
