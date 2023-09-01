@@ -7,6 +7,7 @@
 radius = 4.0
 
 [node name="Spell" type="Node2D"]
+top_level = true
 script = ExtResource("1_ku5xr")
 
 [node name="Sprite" type="Sprite2D" parent="."]
