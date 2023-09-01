@@ -12,10 +12,11 @@ script = ExtResource("1_fkp3d")
 [node name="Sprite" type="Sprite2D" parent="."]
 texture = ExtResource("1_tkfnm")
 
-[node name="Area" type="Area2D" parent="."]
+[node name="Enemy" type="Area2D" parent="."]
+unique_name_in_owner = true
 collision_layer = 2
 
-[node name="CollisionShape" type="CollisionShape2D" parent="Area"]
+[node name="CollisionShape" type="CollisionShape2D" parent="Enemy"]
 shape = SubResource("CircleShape2D_ii6so")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]

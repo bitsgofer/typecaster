@@ -14,10 +14,10 @@ script = ExtResource("1_14yy7")
 unique_name_in_owner = true
 texture = ExtResource("1_hlg0e")
 
-[node name="Area" type="Area2D" parent="."]
+[node name="Mage" type="Area2D" parent="."]
 collision_mask = 2
 
-[node name="CollisionShape" type="CollisionShape2D" parent="Area"]
+[node name="CollisionShape" type="CollisionShape2D" parent="Mage"]
 shape = SubResource("CircleShape2D_ng6su")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]

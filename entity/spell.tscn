@@ -12,8 +12,8 @@ script = ExtResource("1_48ksv")
 [node name="Sprite" type="Sprite2D" parent="."]
 texture = ExtResource("1_whcpp")
 
-[node name="Area" type="Area2D" parent="."]
+[node name="Spell" type="Area2D" parent="."]
 collision_mask = 2
 
-[node name="CollisionShape" type="CollisionShape2D" parent="Area"]
+[node name="CollisionShape" type="CollisionShape2D" parent="Spell"]
 shape = SubResource("CircleShape2D_5p2fh")
