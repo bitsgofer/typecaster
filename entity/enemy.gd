@@ -8,54 +8,43 @@ extends Node2D
 
 @export var entity_type:String = "enemy"
 @export var speed:int = 50
-@export var target:Node = null
-var target_ref:WeakRef = null
-@export var target_name:String = "CHANGE_ME"
+@export var target:Node = null # Mage node
+@export var identifier:String = "CHANGE_ME" # Must be set
 
-# only update the internal target_ref. position and speed is taken from editor
 func _enter_tree():
-	if self.target != null:
-		self.target_ref = weakref(self.target)
 	self.join_group()
 
-# configure all aspects of the enemy
-func configure(p_global_position:Vector2, p_target:Node, p_speed:int, p_target_name:String):
+func configure(p_global_position:Vector2, p_target:Node, p_speed:int, p_identifier:String):
 	self.position = p_global_position
 	self.speed = p_speed
-	self.target_ref = weakref(p_target)
-	self.target_name = p_target_name
-	self.join_group()
+	self.target = p_target
+	self.identifier = p_identifier
 
 func update_ui():
-	$EnemyLabelUI/EnemyLabel.text = self.target_name
+	$EnemyLabelUI/EnemyLabel.text = self.identifier
 
 func join_group():
-	if self.target_ref == null:
-		print_debug("ENEMY: self.target_ref not set => skip joining group")
+	if self.target == null:
+		print_debug("ENEMY.V(4): enemy/%s (identifier= %s): self.target is null => skip joining group" % [self.target.name, self.identifier])
 		return
-	var _target = self.target_ref.get_ref()
-	if _target == null:
-		print_debug("ENEMY: self.target_ref.get_ref() returns null => skip joining group")
-		return
-	var _key = "%s/(target=%s/%s)" % [self.entity_type, _target.entity_type, _target.name]
+	var _key = self.get_group_key()
 	self.add_to_group(_key)
-	print_debug("ENEMY: joied group %s" % _key)
+	print_debug("ENEMY.V(3): enemy/%s (identifier= %s): joined group %s" % [self.name, self.identifier, _key])
 
 func _ready():
-	print_debug("ENEMY: spawned @ (%d, %d)" % [self.position.x, self.position.y])
+	print_debug("ENEMY.V(2): enemy/%s (identifier= %s): spawned @ (%d, %d)" % [self.name, self.identifier, self.position.x, self.position.y])
 	self.update_ui()
 
 func _process(delta):
 	move_towards_top_level_target(delta)
 
+func get_group_key() -> String:
+	return "enemy(target=mage/%s)" % self.target.name
+
 # move towards a target by its global position
 func move_towards_top_level_target(delta:float):
-	if self.target_ref == null:
-		print_debug("ENEMY: self.target_ref not set => skip moving")
+	if self.target == null:
+		print_debug("ENEMY.V(4): enemy/%s (identifier= %s): self.target is null => skip moving" % [self.target.name, self.identifier])
 		return
-	var _target = self.target_ref.get_ref()
-	if _target == null:
-		print_debug("ENEMY: self.target_ref.get_ref() returns null => skip moving")
-		return
-	var direction = _target.global_position - self.position
+	var direction = self.target.global_position - self.position
 	self.position += direction.normalized() * (self.speed * delta)

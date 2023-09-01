@@ -7,6 +7,7 @@
 radius = 16.0
 
 [node name="Enemy" type="Node2D"]
+top_level = true
 script = ExtResource("1_swivy")
 
 [node name="Sprite" type="Sprite2D" parent="."]

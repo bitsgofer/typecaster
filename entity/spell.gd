@@ -8,48 +8,37 @@ extends Node2D
 
 @export var entity_type:String = "spell"
 @export var speed:int = 200
-@export var target:Node = null
-var target_ref:WeakRef = null
+@export var target:Node = null # Enemy nodes
 
-# only update the internal target_ref. position and speed is taken from editor
 func _enter_tree():
-	if self.target != null:
-		self.target_ref = weakref(self.target)
 	self.join_group()
 
-# configure all aspects of the spell
 func configure(p_global_position:Vector2, p_target:Node, p_speed:int):
 	self.position = p_global_position
 	self.speed = p_speed
-	self.target_ref = weakref(p_target)
-	self.join_group()
+	self.target = p_target
 
 func join_group():
-	if self.target_ref == null:
-		print_debug("SPELL: self.target_ref not set => skip joining group")
+	if self.target == null:
+		print_debug("SPELL.V(4): spell/%s (target= %s): self.target is null => skip joining group" % [self.name, self.target.name])
 		return
-	var _target = self.target_ref.get_ref()
-	if _target == null:
-		print_debug("SPELL: self.target_ref.get_ref() returns null => skip joining group")
-		return
-	var _key = "%s/(target=%s/%s)" % [self.entity_type, _target.entity_type, _target.name]
+	var _key = self.get_group_key()
 	self.add_to_group(_key)
-	print_debug("SPELL: joied group %s" % _key)
+	print_debug("SPELL.V(3): spell/%s (target= %s): joined group %s" % [self.name, self.target.name, _key])
+
+func get_group_key() -> String:
+	return "spell(target=enemy/%s)" % self.target.name
 
 func _ready():
-	print_debug("SPELL: spawned @ (%d, %d)" % [self.position.x, self.position.y])
+	print_debug("SPELL.V(2): spell/%s (target= %s): spawned @ (%d, %d)" % [self.name, self.target.name, self.position.x, self.position.y])
 
 func _process(delta):
 	move_towards_top_level_target(delta)
 
 # move towards a target by its global position
 func move_towards_top_level_target(delta:float):
-	if self.target_ref == null:
-		print_debug("SPELL: self.target_ref not set => skip moving")
+	if self.target == null:
+		print_debug("SPELL.V(4): spell/%s (target= %s): self.target is null => skip moving" % [self.name, self.target.name])
 		return
-	var _target = self.target_ref.get_ref()
-	if _target == null:
-		print_debug("SPELL: self.target_ref.get_ref() returns null => skip moving")
-		return
-	var direction = _target.global_position - self.position
+	var direction = self.target.global_position - self.position
 	self.position += direction.normalized() * (self.speed * delta)
