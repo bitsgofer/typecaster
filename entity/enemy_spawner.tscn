@@ -1,3 +1,10 @@
-[gd_scene format=3 uid="uid://cmgy18w6rts5v"]
+[gd_scene load_steps=2 format=3 uid="uid://cmgy18w6rts5v"]
+
+[ext_resource type="Script" path="res://entity/enemy_spawner.gd" id="1_qmcqv"]
 
 [node name="EnemySpawner" type="Node2D"]
+script = ExtResource("1_qmcqv")
+
+[node name="SpawnTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+autostart = true

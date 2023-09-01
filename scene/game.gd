@@ -2,6 +2,7 @@ extends Node2D
 
 func _ready():
 	$EndGame.button_down.connect(Callable(self, "_on_press_end"))
+	$EnemySpawner.configure($Mage, 2)
 
 func _process(delta):
 	pass

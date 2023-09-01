@@ -13,7 +13,7 @@ func group_key(targetName:String) -> String:
 	return "spell/%s" % targetName
 
 func _ready():
-	print_debug("SPELL: @ (%d, %d)" % [self.position.x, self.position.y])
+	print_debug("SPELL: spawned @ (%d, %d)" % [self.position.x, self.position.y])
 
 func _process(delta):
 	move_towards_target(delta)

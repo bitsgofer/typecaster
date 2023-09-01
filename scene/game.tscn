@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://cnpkoad5pgmn7"]
+[gd_scene load_steps=5 format=3 uid="uid://cnpkoad5pgmn7"]
 
 [ext_resource type="Script" path="res://scene/game.gd" id="1_2ntt1"]
 [ext_resource type="PackedScene" uid="uid://bur7mhsgfrq3d" path="res://entity/mage.tscn" id="2_822a3"]
+[ext_resource type="PackedScene" uid="uid://b2gv15275tfca" path="res://entity/enemy.tscn" id="3_noexl"]
+[ext_resource type="PackedScene" uid="uid://cmgy18w6rts5v" path="res://entity/enemy_spawner.tscn" id="4_lswm5"]
 
 [node name="Node" type="Node2D"]
 script = ExtResource("1_2ntt1")
@@ -15,4 +17,21 @@ offset_bottom = 339.0
 text = "END"
 
 [node name="Mage" parent="." instance=ExtResource("2_822a3")]
-position = Vector2(324, 213)
+unique_name_in_owner = true
+position = Vector2(300, 200)
+
+[node name="A" parent="." instance=ExtResource("3_noexl")]
+position = Vector2(520, 198)
+target_name = "A"
+
+[node name="B" parent="." instance=ExtResource("3_noexl")]
+position = Vector2(159, 261)
+target_name = "B"
+
+[node name="C" parent="." instance=ExtResource("3_noexl")]
+position = Vector2(250, 156)
+target_name = "C"
+
+[node name="EnemySpawner" parent="." instance=ExtResource("4_lswm5")]
+unique_name_in_owner = true
+position = Vector2(399, 162)
