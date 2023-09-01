@@ -1,12 +1,12 @@
-assets-all: assets
-assets-all: assets/logo.png
-.PHONY: assets-all
+ASEPRITE_FILES := $(shell find ./media -type f -name '*.aseprite')
+PNG_FILES := $(patsubst ./media/%.aseprite, ./assets/%.png, $(ASEPRITE_FILES))
 
-assets:
-	mkdir -p assets
+assets: ${PNG_FILES}
+.PHONY: assets
 
-assets/logo.png: media/logo.aseprite
+assets/%.png: media/%.aseprite
+	mkdir -p $(dir ${@})
 	$(ASEPRITE) --batch \
-		media/$(basename $(notdir ${<})).aseprite \
+		${<} \
 		--scale 1 \
-		--save-as assets/$(basename $(notdir ${@})).png
+		--save-as ${@}
