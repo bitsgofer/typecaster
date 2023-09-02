@@ -31,6 +31,7 @@ func get_group_key() -> String:
 
 func _ready():
 	print_debug("SPELL.V(2): spell/%s (target= %s): spawned @ (%d, %d)" % [self.name, self.target.name, self.position.x, self.position.y])
+	$Spell.area_entered.connect(Callable(self, "_on_hit"))
 
 func _process(delta):
 	move_towards_top_level_target(delta)
@@ -42,3 +43,9 @@ func move_towards_top_level_target(delta:float):
 		return
 	var direction = self.target.global_position - self.position
 	self.position += direction.normalized() * (self.speed * delta)
+
+func _on_hit(area:Area2D):
+	if area.name != "Enemy":
+		print_debug("SPELL.V(3): hit by unhandled area (name= %s)" % area.name)
+		return
+	print_debug("SPELL.V(2): hit by an enemy")
