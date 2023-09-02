@@ -34,12 +34,16 @@ func join_group():
 func _ready():
 	print_debug("ENEMY.V(2): enemy/%s (identifier= %s): spawned @ (%d, %d)" % [self.name, self.identifier, self.position.x, self.position.y])
 	self.update_ui()
+	$Enemy.area_entered.connect(Callable(self, "_on_hit"))
 
 func _process(delta):
 	move_towards_top_level_target(delta)
 
 func get_group_key() -> String:
 	return "enemy(target=mage/%s)" % self.target.name
+
+func get_collision_key() -> String:
+	return "spell(target=enemy/%s)" % self.name
 
 # move towards a target by its global position
 func move_towards_top_level_target(delta:float):
@@ -48,3 +52,23 @@ func move_towards_top_level_target(delta:float):
 		return
 	var direction = self.target.global_position - self.position
 	self.position += direction.normalized() * (self.speed * delta)
+
+func _on_hit(area:Area2D):
+	match area.name:
+		"Spell":
+			var _spell = area.get_parent()
+			var _spell_group_key = _spell.get_group_key()
+			var _collision_key = self.get_collision_key()
+			if _collision_key == _spell_group_key:
+				print_debug("ENEMY.V(2): enemy/%s (identifier= %s): hit by a matched spell => remove enemy and all matched spell(s)" % [self.target.name, self.identifier])
+				get_tree().call_group(_spell_group_key, "queue_free")
+				self.queue_free()
+				return
+			print_debug("ENEMY.V(2): enemy/%s (identifier= %s): hit by an unmatched spell => do nothing" % [self.target.name, self.identifier])
+			return
+		"Mage":
+			print_debug("ENEMY.V(2): enemy/%s (identifier= %s): hit by a mage" % [self.target.name, self.identifier])
+			self.queue_free()
+			return
+	print_debug("ENEMY.V(3): enemy/%s (identifier= %s): hit by unhandled area (name= %s)" % [self.target.name, self.identifier, area.name])
+	return
