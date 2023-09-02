@@ -6,3 +6,9 @@ assets/
 
 # Releases
 releases/
+
+# Tools
+/tools/webserver/webserver
+
+# Imported for reference
+references/
