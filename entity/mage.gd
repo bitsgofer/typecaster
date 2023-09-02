@@ -5,9 +5,16 @@ extends Node2D
 ## Incantation generally cast spells, e.g: shooting enemies, creating a shield,
 ## summoning a familiar, etc.
 
+@export var health:int = 3
 @export var entity_type:String = "mage"
 
 var incantation:String = ""
+
+func _enter_tree():
+	self.update_ui()
+
+func update_ui():
+	$HealthUI/HSplitContainer/Health.text = "%d" % self.health
 
 func _input(p_event):
 	if p_event is InputEventKey and p_event.is_pressed():
@@ -74,4 +81,13 @@ func _on_hit(area:Area2D):
 	if area.name != "Enemy":
 		print_debug("MAGE.V(3): hit by unhandled area (name= %s)" % area.name)
 		return
-	print_debug("MAGE.V(2): hit by an enemy")
+	var _enemy = area.get_parent()
+	print_debug("MAGE.V(2): hit by enemy/%s (identifier= %s)" % [_enemy.name, _enemy.identifier] )
+	self._reduce_health()
+
+func _reduce_health():
+	self.health -= 1
+	self.update_ui()
+	if self.health < 1:
+		print_debug("MAGE.V(0): no more health => die")
+		get_tree().change_scene_to_file("res://scene/game_over.tscn")

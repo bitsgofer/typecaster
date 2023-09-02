@@ -58,6 +58,7 @@ texture = ExtResource("2_g3n20")
 stretch_mode = 5
 
 [node name="Health" type="Label" parent="HealthUI/HSplitContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 text = "1"
 horizontal_alignment = 1
