@@ -66,3 +66,12 @@ func cast_spell(p_target:Node):
 	_spell.configure(self.global_position, p_target, 200)
 	print_debug("MAGE.V(2): spawn spell @ (%d, %d) (target=enemy/%s, identifier= %s)" % [_spell.position.x, _spell.position.y, _spell.target.name, _spell.target.identifier])
 	self.add_child(_spell)
+
+func _ready():
+	$Mage.area_entered.connect(Callable(self, "_on_hit"))
+
+func _on_hit(area:Area2D):
+	if area.name != "Enemy":
+		print_debug("MAGE.V(3): hit by unhandled area (name= %s)" % area.name)
+		return
+	print_debug("MAGE.V(2): hit by an enemy")
