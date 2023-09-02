@@ -6,6 +6,11 @@ extends Node2D
 
 @export var entity_type:String = "enemy_spawner"
 @export var spawn_interval:float = 3
+@export var spawn_interval_difficulty_multiplier:float = 0.9
+@export var enemy_speed:int = 20
+@export var enemy_speed_variation_percent:float = 0.20
+@export var enemy_speed_difficulty_multiplier:float = 1.1
+@export var difficulty_increase_interval:float = 10
 @export var target:Node = null
 @export var enabled:bool = false
 @export_range(48, 144, 1, "or_greater", "or_less") var spawn_donut_inner_radius:int = 48
@@ -14,11 +19,19 @@ extends Node2D
 @export_range(0, 360, 1, "degrees") var spawn_donut_max_degree:int = 360
 
 func _enter_tree():
-	$Timer.autostart = self.enabled
-	$Timer.wait_time = self.spawn_interval
+	$SpawnTimer.autostart = self.enabled
+	$SpawnTimer.wait_time = self.spawn_interval
+	$DifficultyTimer.wait_time = self.difficulty_increase_interval
 
 func _ready():
-	$Timer.timeout.connect(Callable(self, "_on_spawn_timer_ticked"))
+	$SpawnTimer.timeout.connect(Callable(self, "_on_spawn_timer_ticked"))
+	$DifficultyTimer.timeout.connect(Callable(self, "_on_difficulty_timer_ticked"))
+
+func _on_difficulty_timer_ticked():
+	self.spawn_interval *= self.spawn_interval_difficulty_multiplier
+	self.enemy_speed *= self.enemy_speed_difficulty_multiplier
+	$SpawnTimer.wait_time = self.spawn_interval
+	print_debug("ENEMY_SPAWNER.V(4): spawn_interval= %f; enemy_speed= %d" % [self.spawn_interval, self.enemy_speed])
 
 func configure(p_global_position:Vector2, p_target:Node, p_spawn_interval:float):
 	self.position = p_global_position
@@ -33,8 +46,13 @@ func _on_spawn_timer_ticked():
 	var _enemy = enemy_scene.instantiate()
 	var _position = get_random_position_within_donut(self.global_position)
 	var _identifier = get_random_name()
-	_enemy.configure(_position, self.target, 20, _identifier)
+	_enemy.configure(_position, self.target, self.get_random_enemy_speed(), _identifier)
 	self.add_child(_enemy)
+
+func get_random_enemy_speed() -> int:
+	var _range:int = ceil(self.enemy_speed * self.enemy_speed_variation_percent)
+	var _speed = self.enemy_speed + randi() % _range
+	return _speed
 
 func get_random_position_within_donut(p_center:Vector2) -> Vector2:
 	var _distance = self.spawn_donut_inner_radius + (randf() * (self.spawn_donut_outer_radius - self.spawn_donut_inner_radius))
