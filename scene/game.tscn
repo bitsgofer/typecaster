@@ -1,6 +1,27 @@
-[gd_scene load_steps=2 format=3 uid="uid://o4v6hb7nime7"]
+[gd_scene load_steps=5 format=3 uid="uid://o4v6hb7nime7"]
 
 [ext_resource type="Script" path="res://scene/game.gd" id="1_qv1km"]
+[ext_resource type="Texture2D" uid="uid://b4uwgoihqdqwf" path="res://assets/background.png" id="2_f3wns"]
+[ext_resource type="PackedScene" uid="uid://lo157ndfrqpx" path="res://entity/mage.tscn" id="2_i70ks"]
+[ext_resource type="PackedScene" uid="uid://brl2bb1i8yi6y" path="res://entity/enemy_spawner.tscn" id="3_4jstl"]
 
 [node name="Node" type="Node2D"]
 script = ExtResource("1_qv1km")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(254, -5)
+texture = ExtResource("2_f3wns")
+
+[node name="Mage" parent="." instance=ExtResource("2_i70ks")]
+position = Vector2(320, 314)
+health = 10
+
+[node name="SpawnerCenter" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_4jstl")]
+position = Vector2(320, 314)
+spawn_interval = 5.0
+difficulty_increase_interval = 20.0
+target = NodePath("../Mage")
+enabled = true
+spawn_donut_inner_radius = 320
+spawn_donut_outer_radius = 360
+spawn_donut_min_degree = 180
