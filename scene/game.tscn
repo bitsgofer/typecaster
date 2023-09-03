@@ -28,6 +28,7 @@ spawn_donut_outer_radius = 360
 spawn_donut_min_degree = 180
 
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
 stream = ExtResource("5_66u3b")
 volume_db = 0.5
 autoplay = true
