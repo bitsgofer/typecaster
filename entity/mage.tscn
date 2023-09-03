@@ -1,8 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://lo157ndfrqpx"]
+[gd_scene load_steps=9 format=3 uid="uid://lo157ndfrqpx"]
 
 [ext_resource type="Script" path="res://entity/mage.gd" id="1_1nx04"]
 [ext_resource type="Texture2D" uid="uid://dkhu05d7uu6gc" path="res://assets/heart.png" id="2_g3n20"]
-[ext_resource type="Texture2D" uid="uid://r4iyltoojba8" path="res://assets/hooded_mage.png" id="2_pc3ms"]
 [ext_resource type="Texture2D" uid="uid://dk2uollipc0rm" path="res://assets/hooded_mage_idle_1.png" id="3_7safq"]
 [ext_resource type="Texture2D" uid="uid://brrcbpfi7afiw" path="res://assets/hooded_mage_idle_2.png" id="4_07j1g"]
 [ext_resource type="AudioStream" uid="uid://c77m5a35ddo7o" path="res://assets/sfx_swoosh.wav" id="4_hgcb8"]
@@ -27,10 +26,6 @@ radius = 16.0
 
 [node name="Mage" type="Node2D"]
 script = ExtResource("1_1nx04")
-
-[node name="Sprite" type="Sprite2D" parent="."]
-visible = false
-texture = ExtResource("2_pc3ms")
 
 [node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true

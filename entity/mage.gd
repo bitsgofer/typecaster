@@ -74,6 +74,12 @@ func cast_spell(p_target:Node):
 	_spell.configure(self.global_position, p_target, 200)
 	print_debug("MAGE.V(2): spawn spell @ (%d, %d) (target=enemy/%s, identifier= %s)" % [_spell.position.x, _spell.position.y, _spell.target.name, _spell.target.identifier])
 	self.add_child(_spell)
+	var _direction = p_target.global_position - self.global_position
+	if _direction.x < 0:
+		$AnimatedSprite.scale = Vector2(-1, 1)
+	else:
+		$AnimatedSprite.scale = Vector2(1, 1)
+
 
 func _ready():
 	$Mage.area_entered.connect(Callable(self, "_on_hit"))

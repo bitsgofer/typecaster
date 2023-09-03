@@ -35,6 +35,7 @@ func _ready():
 	print_debug("ENEMY.V(2): enemy/%s (identifier= %s): spawned @ (%d, %d)" % [self.name, self.identifier, self.position.x, self.position.y])
 	self.update_ui()
 	$Enemy.area_entered.connect(Callable(self, "_on_hit"))
+	$AnimatedSprite.play("idle")
 
 func _process(delta):
 	move_towards_top_level_target(delta)
@@ -52,6 +53,9 @@ func move_towards_top_level_target(delta:float):
 		return
 	var direction = self.target.global_position - self.position
 	self.position += direction.normalized() * (self.speed * delta)
+	var _angle = direction.angle()
+	print_debug("ENEMY.V(4): angle= %f" % _angle)
+	$AnimatedSprite.rotation = _angle
 
 func _on_hit(area:Area2D):
 	match area.name:
