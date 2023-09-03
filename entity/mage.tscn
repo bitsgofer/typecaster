@@ -1,8 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://lo157ndfrqpx"]
+[gd_scene load_steps=7 format=3 uid="uid://lo157ndfrqpx"]
 
 [ext_resource type="Script" path="res://entity/mage.gd" id="1_1nx04"]
 [ext_resource type="Texture2D" uid="uid://cbwuir4nrj0nb" path="res://assets/mage.png" id="1_grlc2"]
 [ext_resource type="Texture2D" uid="uid://dkhu05d7uu6gc" path="res://assets/heart.png" id="2_g3n20"]
+[ext_resource type="AudioStream" uid="uid://c1bqkdxqkvljy" path="res://media/sfx_swoosh.wav" id="4_6dx4k"]
+[ext_resource type="AudioStream" uid="uid://bhybpuijbmu5l" path="res://assets/sfx_cast_spell.wav" id="5_hutie"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qo61v"]
 radius = 16.0
@@ -63,3 +65,12 @@ layout_mode = 2
 text = "1"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="SFXDead" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("4_6dx4k")
+volume_db = 10.0
+
+[node name="SFXCastSpell" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_hutie")
+pitch_scale = 1.5

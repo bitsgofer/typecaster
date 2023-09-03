@@ -60,8 +60,11 @@ func _on_hit(area:Area2D):
 			var _spell_group_key = _spell.get_group_key()
 			var _collision_key = self.get_collision_key()
 			if _collision_key == _spell_group_key:
+				$SFXDead.play()
+				self.visible = false
 				print_debug("ENEMY.V(2): enemy/%s (identifier= %s): hit by a matched spell => remove enemy and all matched spell(s)" % [self.target.name, self.identifier])
 				get_tree().call_group(_spell_group_key, "queue_free")
+				await $SFXDead.finished
 				self.queue_free()
 				return
 			print_debug("ENEMY.V(2): enemy/%s (identifier= %s): hit by an unmatched spell => do nothing" % [self.target.name, self.identifier])

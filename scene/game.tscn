@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://o4v6hb7nime7"]
+[gd_scene load_steps=6 format=3 uid="uid://o4v6hb7nime7"]
 
 [ext_resource type="Script" path="res://scene/game.gd" id="1_qv1km"]
 [ext_resource type="Texture2D" uid="uid://b4uwgoihqdqwf" path="res://assets/background.png" id="2_f3wns"]
 [ext_resource type="PackedScene" uid="uid://lo157ndfrqpx" path="res://entity/mage.tscn" id="2_i70ks"]
 [ext_resource type="PackedScene" uid="uid://brl2bb1i8yi6y" path="res://entity/enemy_spawner.tscn" id="3_4jstl"]
+[ext_resource type="AudioStream" uid="uid://bblc2g18mcqru" path="res://assets/bgp_cursed_village_by_alkakrab.mp3" id="5_66u3b"]
 
 [node name="Node" type="Node2D"]
 script = ExtResource("1_qv1km")
@@ -25,3 +26,7 @@ enabled = true
 spawn_donut_inner_radius = 320
 spawn_donut_outer_radius = 360
 spawn_donut_min_degree = 180
+
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_66u3b")
+autoplay = true

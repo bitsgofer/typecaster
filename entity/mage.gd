@@ -69,6 +69,7 @@ func find_matching_enemy(p_enemy_identifier:String) -> Node:
 
 const spell_scene = preload("res://entity/spell.tscn")
 func cast_spell(p_target:Node):
+	$SFXCastSpell.play()
 	var _spell = spell_scene.instantiate()
 	_spell.configure(self.global_position, p_target, 200)
 	print_debug("MAGE.V(2): spawn spell @ (%d, %d) (target=enemy/%s, identifier= %s)" % [_spell.position.x, _spell.position.y, _spell.target.name, _spell.target.identifier])
@@ -89,5 +90,7 @@ func _reduce_health():
 	self.health -= 1
 	self.update_ui()
 	if self.health < 1:
+		$SFXDead.play()
 		print_debug("MAGE.V(0): no more health => die")
+		await $SFXDead.finished
 		get_tree().change_scene_to_file("res://scene/game_over.tscn")

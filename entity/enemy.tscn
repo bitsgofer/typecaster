@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://c1tse7qthpnad"]
+[gd_scene load_steps=5 format=3 uid="uid://c1tse7qthpnad"]
 
 [ext_resource type="Texture2D" uid="uid://dwowi1vb6s3bn" path="res://assets/enemy.png" id="1_kow1f"]
 [ext_resource type="Script" path="res://entity/enemy.gd" id="1_swivy"]
+[ext_resource type="AudioStream" uid="uid://bk83yckidfhr8" path="res://assets/sfx_enemy_die.wav" id="3_l7h62"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6q1ss"]
 radius = 16.0
@@ -36,3 +37,7 @@ layout_mode = 2
 text = "ENEMY LABEL"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="SFXDead" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("3_l7h62")
