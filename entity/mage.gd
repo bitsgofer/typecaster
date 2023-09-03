@@ -77,6 +77,7 @@ func cast_spell(p_target:Node):
 
 func _ready():
 	$Mage.area_entered.connect(Callable(self, "_on_hit"))
+	$AnimatedSprite.play("idle")
 
 func _on_hit(area:Area2D):
 	if area.name != "Enemy":
