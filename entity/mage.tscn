@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://lo157ndfrqpx"]
 
 [ext_resource type="Script" path="res://entity/mage.gd" id="1_1nx04"]
-[ext_resource type="Texture2D" uid="uid://cbwuir4nrj0nb" path="res://assets/mage.png" id="1_grlc2"]
 [ext_resource type="Texture2D" uid="uid://dkhu05d7uu6gc" path="res://assets/heart.png" id="2_g3n20"]
+[ext_resource type="Texture2D" uid="uid://r4iyltoojba8" path="res://assets/hooded_mage.png" id="2_pc3ms"]
 [ext_resource type="AudioStream" uid="uid://c77m5a35ddo7o" path="res://assets/sfx_swoosh.wav" id="4_hgcb8"]
 [ext_resource type="AudioStream" uid="uid://bhybpuijbmu5l" path="res://assets/sfx_cast_spell.wav" id="5_hutie"]
 
@@ -13,7 +13,7 @@ radius = 16.0
 script = ExtResource("1_1nx04")
 
 [node name="Sprite" type="Sprite2D" parent="."]
-texture = ExtResource("1_grlc2")
+texture = ExtResource("2_pc3ms")
 
 [node name="Mage" type="Area2D" parent="."]
 collision_mask = 2
