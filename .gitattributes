@@ -5,3 +5,9 @@ media/mage.aseprite filter=lfs diff=lfs merge=lfs -text
 media/spell.aseprite filter=lfs diff=lfs merge=lfs -text
 media/enemy.aseprite filter=lfs diff=lfs merge=lfs -text
 media/heart.aseprite filter=lfs diff=lfs merge=lfs -text
+media/bgp_strange_farm_by_alkakrab.mp3 filter=lfs diff=lfs merge=lfs -text
+media/bgm_dark_woods_by_alkakrab.mp3 filter=lfs diff=lfs merge=lfs -text
+media/bgp_cursed_village_by_alkakrab.mp3 filter=lfs diff=lfs merge=lfs -text
+media/sfx_enemy_die.wav filter=lfs diff=lfs merge=lfs -text
+media/sfx_swoosh.wav filter=lfs diff=lfs merge=lfs -text
+media/sfx_cast_spell.wav filter=lfs diff=lfs merge=lfs -text
