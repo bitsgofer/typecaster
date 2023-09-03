@@ -9,14 +9,14 @@ import (
 func main() {
 	// flags
 	var listenAddress, contentDir string
-	flag.StringVar(&listenAddress, "listenAddress", ":8080", "webserver bind address")
+	flag.StringVar(&listenAddress, "listenAddress", ":7777", "webserver bind address")
 	flag.StringVar(&contentDir, "contentDir", "releases/web", "/path/to/web/game")
 
 	// server
 	fileServer := http.FileServer(http.Dir(contentDir))
 
 	http.Handle("/", addHeaders(fileServer))
-	log.Println("Running game server, listening to :8080...")
+	log.Println("Running game server, listening to :7777...")
 	err := http.ListenAndServe(listenAddress, nil)
 	if err != nil {
 		log.Fatal(err)
