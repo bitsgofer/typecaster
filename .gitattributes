@@ -12,3 +12,4 @@ media/sfx_enemy_die.wav filter=lfs diff=lfs merge=lfs -text
 media/sfx_swoosh.wav filter=lfs diff=lfs merge=lfs -text
 media/sfx_cast_spell.wav filter=lfs diff=lfs merge=lfs -text
 media/hooded_mage.aseprite filter=lfs diff=lfs merge=lfs -text
+assets/ filter=lfs diff=lfs merge=lfs -text
