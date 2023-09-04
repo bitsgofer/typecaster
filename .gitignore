@@ -12,3 +12,6 @@ releases/
 
 # Imported for reference
 references/
+
+# Rust specific ignores
+/rust/target
